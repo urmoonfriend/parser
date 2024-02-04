@@ -1,0 +1,33 @@
+app:
+  db:
+    url: jdbc:postgresql://localhost:5432/ds
+    schema: ds_parser_service
+    username: postgres
+    password: postgres
+  scheduler:
+    parse: "0 0 1 * * ?"
+server:
+  port: 8087
+  servlet:
+    context-path: /parser
+spring:
+  datasource:
+    url: ${app.db.url}
+    username: ${app.db.username}
+    password: ${app.db.password}
+  flyway:
+    schemas: ${app.db.schema}
+  jpa:
+    properties:
+      hibernate.default_schema: ${app.db.schema}
+scheduler:
+  parse:  ${app.scheduler.parse}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus,health,info,metrics,loggers
+logging:
+  level:
+    org.springframework: INFO

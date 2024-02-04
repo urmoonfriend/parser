@@ -1,0 +1,7 @@
+variables:
+  MAVEN_IMAGE: maven:3-jdk-17
+
+include:
+  project: paygate/ci-cd
+  file:
+    - .template.yml
