@@ -6,6 +6,11 @@ app:
     password: postgres
   scheduler:
     parse: "0 0 1 * * ?"
+  security:
+    id: id
+    secret: secret
+    accessTokenUri: https://www.reddit.com/api/v1/access_token
+    userAuthorizationUri: https://www.reddit.com/api/v1/authorize
 server:
   port: 8087
   servlet:
@@ -22,7 +27,11 @@ spring:
       hibernate.default_schema: ${app.db.schema}
 scheduler:
   parse:  ${app.scheduler.parse}
-
+security:
+  id: ${app.security.id}
+  secret: ${app.security.secret}
+  accessTokenUri: ${app.security.accessTokenUri}
+  userAuthorizationUri: ${app.security.userAuthorizationUri}
 management:
   endpoints:
     web:
